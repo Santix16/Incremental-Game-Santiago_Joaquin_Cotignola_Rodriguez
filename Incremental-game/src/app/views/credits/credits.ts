@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-credits',
-  imports: [],
-  templateUrl: './credits.html',
-  styleUrl: './credits.css',
+  standalone: true,
+  imports: [RouterLink],
+  templateUrl: './credits.html'
 })
-export class Credits {
+export class Credits {}
 
-}

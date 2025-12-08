@@ -1,0 +1,7 @@
+<div class="generator-item">
+  <h4>{{ generator.name }} (Nivel {{ generator.level }})</h4>
+  <p>Producción: {{ generator.productionPerSecond * generator.level }}/s</p>
+  <p>Precio: {{ generator.currentPrice }}</p>
+  <button (click)="buy()">Comprar</button>
+</div>
+

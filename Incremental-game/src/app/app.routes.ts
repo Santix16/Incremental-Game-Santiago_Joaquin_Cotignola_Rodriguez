@@ -6,10 +6,9 @@ import { Credits } from './views/credits/credits';
 import { Stats } from './views/stats/stats';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'menu', pathMatch: 'full' },
-  { path: 'menu', component: Menu },
+  { path: '', component: Menu },
   { path: 'game', component: Game },
   { path: 'settings', component: Settings },
   { path: 'credits', component: Credits },
-  { path: 'stats', component: Stats },
+  { path: 'stats', component: Stats }
 ];

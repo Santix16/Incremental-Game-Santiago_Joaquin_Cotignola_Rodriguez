@@ -1,1 +1,10 @@
-<p>stats works!</p>
+<h2>Estadísticas</h2>
+
+<p>Puntos: {{ game.state().clicks() }}</p>
+<p>Nivel: {{ game.state().level() }}</p>
+<p>Boosters comprados: {{ game.state().boosters().length }}</p>
+
+<button routerLink="/">Volver al Menú</button>
+
+
+

@@ -1,0 +1,15 @@
+<h3>Opciones del Juego</h3>
+
+<label>Dificultad:</label>
+<select [(ngModel)]="game.state().difficulty">
+  <option value="easy">Fácil</option>
+  <option value="medium">Media</option>
+  <option value="hard">Difícil</option>
+</select>
+
+<br/><br/>
+
+<button (click)="save()">Guardar</button>
+
+
+
