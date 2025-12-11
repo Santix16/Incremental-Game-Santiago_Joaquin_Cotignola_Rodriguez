@@ -1,10 +1,22 @@
-<h2>Estadísticas</h2>
+<app-menu></app-menu>
 
-<p>Puntos: {{ game.state().clicks() }}</p>
-<p>Nivel: {{ game.state().level() }}</p>
-<p>Boosters comprados: {{ game.state().boosters().length }}</p>
+<h2>Ranking</h2>
+<table>
+  <tr>
+    <th>Posición</th>
+    <th>Usuario</th>
+    <th>Puntos</th>
+    <th>Monedas</th>
+  </tr>
+  <tr *ngFor="let user of users; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.points }}</td>
+    <td>{{ user.coins }}</td>
+  </tr>
+</table>
+<a routerLink="/">Volver al Menú</a>
 
-<button routerLink="/">Volver al Menú</button>
 
 
 

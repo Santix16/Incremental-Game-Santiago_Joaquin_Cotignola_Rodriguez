@@ -1,0 +1,13 @@
+<h2>Tienda</h2>
+<p>Monedas disponibles: {{ game.state().coins() }}</p>
+<div *ngFor="let b of game.boosters">
+  <h4>{{ b.name }}</h4>
+  <p>Multiplicador: {{ b.multiplier }}x</p>
+  <p>Precio: {{ b.price }} monedas</p>
+  <button (click)="game.buyBooster(b)" [disabled]="b.owned || game.state().coins() < b.price">
+    {{ b.owned ? 'Comprado' : 'Comprar' }}
+  </button>
+</div>
+
+<button routerLink="/game">Volver al Juego</button>
+

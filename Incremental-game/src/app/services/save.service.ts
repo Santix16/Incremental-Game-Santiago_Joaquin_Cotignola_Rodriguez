@@ -1,32 +1,35 @@
 import { Injectable } from '@angular/core';
-import { GameService, GameState } from './game.service';
 import { HttpClient } from '@angular/common/http';
+import { GameService } from './game.service';
 
 @Injectable({ providedIn: 'root' })
 export class SaveService {
   constructor(private http: HttpClient, private game: GameService) {}
 
-  save() {
+  save(userId: number) {
     const state = {
-      clicks: this.game.state().clicks(),
       level: this.game.state().level(),
-      difficulty: this.game.state().difficulty(),
-      boosters: this.game.state().boosters()
+      clicks: this.game.state().clicks(),
+      points: this.game.state().points(),
+      coins: this.game.state().coins(),
+      boosters: this.game.boosters
     };
-    return this.http.post('http://localhost:3000/save', state).subscribe();
+    return this.http.post(`http://localhost:3000/save/${userId}`, state).subscribe();
   }
 
-  load() {
-    this.http.get<{
-      clicks: number;
-      level: number;
-      difficulty: 'easy' | 'medium' | 'hard';
-      boosters: any[];
-    }>('http://localhost:3000/save').subscribe(data => {
-      this.game.state().clicks.set(data.clicks);
+  load(userId: number) {
+    this.http.get<any>(`http://localhost:3000/save/${userId}`).subscribe(data => {
       this.game.state().level.set(data.level);
-      this.game.state().difficulty.set(data.difficulty);
-      this.game.state().boosters.set(data.boosters);
+      this.game.state().clicks.set(data.clicks);
+      this.game.state().points.set(data.points);
+      this.game.state().coins.set(data.coins);
+      // actualizar boosters
+      const boosters = this.game.state().boosters();
+      data.boosters.forEach((b: any) => {
+        const booster = boosters.find(x => x.id === b.id);
+        if (booster) booster.owned = b.owned;
+      });
+      this.game.state().boosters.set([...boosters]);
     });
   }
 }

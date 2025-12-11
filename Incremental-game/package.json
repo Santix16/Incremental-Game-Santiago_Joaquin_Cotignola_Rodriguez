@@ -2,27 +2,25 @@
   "name": "my-angular-app",
   "version": "0.0.0",
   "main": "main.js",
-
   "build": {
-        "appId": "org.iescamp.din.my-angular-app",
-        "productName": "Mi Aplicación Angular",
-        "files": [
-            "dist/my-angular-app/**/*",
-            "main.js",
-            "package.json"
-        ]
-    },
-    "win": {
-        "target": [
-            "nsis"
-        ]
-    },
-    "linux": {
-        "target": [
-            "AppImage"
-        ]
+    "appId": "org.iescamp.din.my-angular-app",
+    "productName": "Mi Aplicación Angular",
+    "files": [
+      "dist/my-angular-app/**/*",
+      "main.js",
+      "package.json"
+    ]
   },
-
+  "win": {
+    "target": [
+      "nsis"
+    ]
+  },
+  "linux": {
+    "target": [
+      "AppImage"
+    ]
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -56,6 +54,7 @@
     "@angular/forms": "^21.0.0",
     "@angular/platform-browser": "^21.0.0",
     "@angular/router": "^21.0.0",
+    "json-server": "^1.0.0-beta.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -70,5 +69,10 @@
     "typescript": "~5.9.2",
     "vitest": "^4.0.8",
     "wait-on": "^9.0.3"
-  }
+  },
+  "description": "This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.2.",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
 }

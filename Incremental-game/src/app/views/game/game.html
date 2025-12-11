@@ -1,20 +1,16 @@
 <h2>Juego</h2>
-<button routerLink="/">Menú</button>
+<button routerLink="/">Volver al Menú</button>
 
 <div class="hud">
   <p>Nivel: {{ game.state().level() }}</p>
-  <p>Puntos: {{ game.state().clicks() }}</p>
+  <p>Clicks: {{ game.state().clicks() }}</p>
+  <p>Puntos: {{ game.state().points() }} / {{ game.pointsRequiredForLevel() }}</p>
+  <p>Monedas: {{ game.state().coins() }}</p>
 </div>
 
-<button (click)="clickResource()">¡Click!</button>
+<button (click)="game.click()">Click!</button>
+<button routerLink="/shop">Ir a Tienda</button>
 
-<button routerLink="/shop">Tienda</button>
-
-<app-pause-confirm
-  [show]="showPause"
-  (confirm)="nextLevel()"
-  (cancel)="showPause=false">
-</app-pause-confirm>
 
 
 
