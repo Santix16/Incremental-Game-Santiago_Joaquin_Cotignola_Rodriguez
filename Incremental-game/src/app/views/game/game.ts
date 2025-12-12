@@ -1,35 +1,17 @@
 import { Component } from '@angular/core';
-import { GameService } from '../../services/game.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { PauseConfirm } from '../../components/pause-confirm/pause-confirm';
+import { GameService } from '../../services/game.service';
+import { WorkerItem } from '../../components/worker-item/worker-item';
+import { ProductItem } from '../../components/product-item/product-item';
+// Si usas el PauseConfirm, impórtalo también
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, RouterLink, PauseConfirm],
+  imports: [CommonModule, RouterLink, WorkerItem, ProductItem],
   templateUrl: './game.html'
 })
 export class Game {
-  showPause = false;
-
   constructor(public game: GameService) {}
-
-  clickResource() {
-    this.game.click(); // sumar puntos y verificar subida de nivel
-
-    // Si subió de nivel, mostrar popup
-    if (this.game.justLeveledUp()) {
-      this.showPause = true;
-      this.game.clearLevelFlag();
-    }
-  }
-
-  nextLevel() {
-    this.showPause = false;
-  }
 }
-
-
-
-

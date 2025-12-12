@@ -1,0 +1,26 @@
+<div class="product-card p-4 border rounded shadow mb-2 bg-white relative">
+  <div class="absolute top-2 right-2 text-2xl opacity-20">{{ product.icon }}</div>
+  
+  <h4 class="font-bold">{{ product.name }}</h4>
+  <p class="text-sm mb-2">Stock: {{ product.stock }}</p>
+
+  <div class="recipe text-xs text-gray-500 mb-3">
+    Requisitos:
+    <span *ngFor="let req of product.cost" class="block">
+      - {{ req.amount }} {{ req.type }}
+    </span>
+  </div>
+
+  <div class="flex gap-2">
+    <button (click)="game.craftProduct(product.id)" 
+      class="flex-1 bg-green-600 text-white py-1 rounded text-xs">
+      Fabricar
+    </button>
+    
+    <button (click)="game.sellProduct(product.id)" 
+      [disabled]="product.stock === 0"
+      class="flex-1 bg-yellow-500 text-white py-1 rounded text-xs disabled:bg-gray-300">
+      Vender ({{ product.sellPrice }} €)
+    </button>
+  </div>
+</div>

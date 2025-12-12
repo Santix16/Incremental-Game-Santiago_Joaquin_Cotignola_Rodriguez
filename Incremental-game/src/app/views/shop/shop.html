@@ -1,13 +1,22 @@
-<h2>Tienda</h2>
-<p>Monedas disponibles: {{ game.state().coins() }}</p>
-<div *ngFor="let b of game.boosters">
-  <h4>{{ b.name }}</h4>
-  <p>Multiplicador: {{ b.multiplier }}x</p>
-  <p>Precio: {{ b.price }} monedas</p>
-  <button (click)="game.buyBooster(b)" [disabled]="b.owned || game.state().coins() < b.price">
-    {{ b.owned ? 'Comprado' : 'Comprar' }}
-  </button>
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Mercado de Ventas</h2>
+  <p class="mb-4">Capital disponible: <span class="font-bold text-green-600">{{ game.state().money() }} €</span></p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div *ngFor="let product of game.state().products()" class="border p-4 rounded bg-white shadow flex justify-between items-center">
+      <div>
+        <h4 class="font-bold text-lg">{{ product.icon }} {{ product.name }}</h4>
+        <p class="text-sm text-gray-500">Stock: {{ product.stock }}</p>
+      </div>
+      
+      <button 
+        (click)="game.sellProduct(product.id)" 
+        [disabled]="product.stock === 0"
+        class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 disabled:bg-gray-300">
+        Vender ({{ product.sellPrice }} €)
+      </button>
+    </div>
+  </div>
+
+  <button routerLink="/game" class="mt-8 text-blue-600 underline">Volver a la Fábrica</button>
 </div>
-
-<button routerLink="/game">Volver al Juego</button>
-

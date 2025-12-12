@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { GameService, Difficulty } from '../../services/game.service';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-config-form',
@@ -13,10 +13,7 @@ export class ConfigForm {
   constructor(public game: GameService) {}
 
   save() {
-    const currentDifficulty: Difficulty = this.game.state().difficulty();
-    this.game.updateDifficulty(currentDifficulty);
+    // La dificultad está deshabilitada temporalmente en el nuevo modo Tycoon
     alert('Configuración guardada!');
   }
 }
-
-

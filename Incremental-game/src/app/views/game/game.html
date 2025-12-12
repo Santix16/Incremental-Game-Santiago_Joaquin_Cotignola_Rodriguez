@@ -1,16 +1,40 @@
-<h2>Juego</h2>
-<button routerLink="/">Volver al Menú</button>
+<div class="game-container p-6 bg-gray-100 min-h-screen">
+  
+  <!-- CABECERA: DINERO Y RECURSOS -->
+  <header class="bg-white p-4 rounded shadow mb-6 sticky top-0 z-10">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-bold text-green-700">Capital: {{ game.state().money() }} €</h2>
+      <button routerLink="/menu" class="text-sm underline">Volver al Menú</button>
+    </div>
+    
+    <div class="grid grid-cols-3 gap-4 text-center">
+      <div *ngFor="let res of game.state().resources()" class="bg-gray-50 p-2 rounded">
+        <div class="text-xl">{{ res.icon }}</div>
+        <div class="font-bold">{{ res.amount }}</div>
+        <div class="text-xs text-gray-500">{{ res.name }}</div>
+      </div>
+    </div>
+  </header>
 
-<div class="hud">
-  <p>Nivel: {{ game.state().level() }}</p>
-  <p>Clicks: {{ game.state().clicks() }}</p>
-  <p>Puntos: {{ game.state().points() }} / {{ game.pointsRequiredForLevel() }}</p>
-  <p>Monedas: {{ game.state().coins() }}</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <!-- COLUMNA IZQUIERDA: GESTIÓN DE PERSONAL -->
+    <section>
+      <h3 class="text-xl font-bold mb-4 text-gray-800">👷 Plantilla</h3>
+      <app-worker-item 
+        *ngFor="let worker of game.state().workers()" 
+        [worker]="worker">
+      </app-worker-item>
+    </section>
+
+    <!-- COLUMNA DERECHA: FÁBRICA -->
+    <section>
+      <h3 class="text-xl font-bold mb-4 text-gray-800">🏭 Línea de Montaje</h3>
+      <app-product-item 
+        *ngFor="let prod of game.state().products()" 
+        [product]="prod">
+      </app-product-item>
+    </section>
+
+  </div>
 </div>
-
-<button (click)="game.click()">Click!</button>
-<button routerLink="/shop">Ir a Tienda</button>
-
-
-
-

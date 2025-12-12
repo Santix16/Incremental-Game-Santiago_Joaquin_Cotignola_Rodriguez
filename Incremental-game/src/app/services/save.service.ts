@@ -8,33 +8,41 @@ export class SaveService {
 
   save(userId: number) {
     const state = {
-      level: this.game.state().level(),
-      clicks: this.game.state().clicks(),
-      points: this.game.state().points(),
-      coins: this.game.state().coins(),
-      boosters: this.game.boosters
+      money: this.game.state().money(),
+      resources: this.game.state().resources(),
+      workers: this.game.state().workers(),
+      products: this.game.state().products()
     };
-    return this.http.post(`http://localhost:3000/save/${userId}`, state).subscribe();
+    // Guardamos en localStorage para evitar errores si no hay backend
+    localStorage.setItem(`save_${userId}`, JSON.stringify(state));
+    console.log('Partida guardada', state);
+    
+    // Si tuvieras backend real:
+    // return this.http.post(`http://localhost:3000/save/${userId}`, state).subscribe();
   }
 
   load(userId: number) {
+    // Carga desde localStorage
+    const saved = localStorage.getItem(`save_${userId}`);
+    if (saved) {
+      const data = JSON.parse(saved);
+      
+      this.game.state().money.set(data.money);
+      this.game.state().resources.set(data.resources);
+      this.game.state().workers.set(data.workers);
+      this.game.state().products.set(data.products);
+      
+      console.log('Partida cargada');
+    }
+    
+    // Lógica para backend real:
+    /*
     this.http.get<any>(`http://localhost:3000/save/${userId}`).subscribe(data => {
-      this.game.state().level.set(data.level);
-      this.game.state().clicks.set(data.clicks);
-      this.game.state().points.set(data.points);
-      this.game.state().coins.set(data.coins);
-      // actualizar boosters
-      const boosters = this.game.state().boosters();
-      data.boosters.forEach((b: any) => {
-        const booster = boosters.find(x => x.id === b.id);
-        if (booster) booster.owned = b.owned;
-      });
-      this.game.state().boosters.set([...boosters]);
+      if(data) {
+         this.game.state().money.set(data.money);
+         // ... resto de asignaciones
+      }
     });
+    */
   }
 }
-
-
-
-
-
