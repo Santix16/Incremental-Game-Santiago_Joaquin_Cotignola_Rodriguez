@@ -4,13 +4,13 @@ import { RouterLink } from '@angular/router';
 import { GameService } from '../../services/game.service';
 import { WorkerItem } from '../../components/worker-item/worker-item';
 import { ProductItem } from '../../components/product-item/product-item';
-// Si usas el PauseConfirm, impórtalo también
 
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [CommonModule, RouterLink, WorkerItem, ProductItem],
-  templateUrl: './game.html'
+  templateUrl: './game.html',
+  styleUrls: ['./game.css'] // <-- Vinculación crucial
 })
 export class Game {
   constructor(public game: GameService) {}

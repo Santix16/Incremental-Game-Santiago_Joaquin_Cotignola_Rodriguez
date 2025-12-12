@@ -7,15 +7,22 @@ import { WorkerUnit } from '../../interfaces/worker';
   selector: 'app-worker-item',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './worker-item.html'
+  templateUrl: './worker-item.html',
+  styleUrls: ['./worker-item.css']
 })
 export class WorkerItem {
   @Input() worker!: WorkerUnit;
 
   constructor(public game: GameService) {}
 
-  // Helper para saber si se puede permitir comprar
-  canAfford(cost: number): boolean {
-    return this.game.state().money() >= cost;
+  canAfford(cost: number): boolean { return this.game.state().money() >= cost; }
+
+  getWorkerIcon(): string {
+    switch(this.worker.targetResource) {
+      case 'wood': return '🪓';
+      case 'iron': return '⛏️';
+      case 'silicon': return '🔬';
+      default: return '👷';
+    }
   }
 }

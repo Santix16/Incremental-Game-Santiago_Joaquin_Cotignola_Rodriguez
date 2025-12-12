@@ -1,40 +1,80 @@
-<div class="game-container p-6 bg-gray-100 min-h-screen">
+<div class="game-container">
   
-  <!-- CABECERA: DINERO Y RECURSOS -->
-  <header class="bg-white p-4 rounded shadow mb-6 sticky top-0 z-10">
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-2xl font-bold text-green-700">Capital: {{ game.state().money() }} €</h2>
-      <button routerLink="/menu" class="text-sm underline">Volver al Menú</button>
+  <!-- HUD SUPERIOR (STICKY) -->
+  <header class="hud">
+    <div class="hud-top">
+      
+      <!-- Marca -->
+      <div class="brand">
+        <h1>TYCOON<span>INC.</span></h1>
+      </div>
+
+      <!-- Display Central de Dinero -->
+      <div class="money-display">
+        <span style="font-size: 1.5rem;">💰</span>
+        <div>
+          <span class="money-label">Capital Disponible</span>
+          <div class="money-amount">{{ game.state().money() | number:'1.0-0' }} €</div>
+        </div>
+      </div>
+
+      <!-- Botón Menú -->
+      <a routerLink="/menu" class="nav-btn">
+        <span class="menu-icon">☰</span> 
+        <span class="hidden-mobile">MENÚ</span>
+      </a>
     </div>
-    
-    <div class="grid grid-cols-3 gap-4 text-center">
-      <div *ngFor="let res of game.state().resources()" class="bg-gray-50 p-2 rounded">
-        <div class="text-xl">{{ res.icon }}</div>
-        <div class="font-bold">{{ res.amount }}</div>
-        <div class="text-xs text-gray-500">{{ res.name }}</div>
+
+    <!-- Barra de Recursos (Scroll Horizontal) -->
+    <div class="resources-bar">
+      <div class="res-container">
+        <div *ngFor="let res of game.state().resources()" class="res-item">
+          <div class="res-icon">{{ res.icon }}</div>
+          <div class="res-data">
+            <span class="res-val">{{ res.amount | number:'1.0-0' }}</span>
+            <span class="res-name">{{ res.name }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="dashboard">
     
-    <!-- COLUMNA IZQUIERDA: GESTIÓN DE PERSONAL -->
+    <!-- SECCIÓN IZQUIERDA: TRABAJADORES -->
     <section>
-      <h3 class="text-xl font-bold mb-4 text-gray-800">👷 Plantilla</h3>
-      <app-worker-item 
-        *ngFor="let worker of game.state().workers()" 
-        [worker]="worker">
-      </app-worker-item>
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="accent-mark">///</span> Dept. Extracción
+        </h2>
+        <span class="status-badge online">● SISTEMAS EN LÍNEA</span>
+      </div>
+      
+      <div class="grid-workers">
+        <app-worker-item 
+          *ngFor="let worker of game.state().workers()" 
+          [worker]="worker">
+        </app-worker-item>
+      </div>
     </section>
 
-    <!-- COLUMNA DERECHA: FÁBRICA -->
+    <!-- SECCIÓN DERECHA: FÁBRICA -->
     <section>
-      <h3 class="text-xl font-bold mb-4 text-gray-800">🏭 Línea de Montaje</h3>
-      <app-product-item 
-        *ngFor="let prod of game.state().products()" 
-        [product]="prod">
-      </app-product-item>
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="accent-mark orange">///</span> Manufactura
+        </h2>
+        <span class="status-badge manual">OPERACIÓN MANUAL</span>
+      </div>
+
+      <div class="list-products">
+        <app-product-item 
+          *ngFor="let prod of game.state().products()" 
+          [product]="prod">
+        </app-product-item>
+      </div>
     </section>
 
-  </div>
+  </main>
 </div>

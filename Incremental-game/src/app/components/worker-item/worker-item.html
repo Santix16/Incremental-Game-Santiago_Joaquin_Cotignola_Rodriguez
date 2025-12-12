@@ -1,29 +1,51 @@
-<div class="worker-card p-4 border rounded shadow mb-2 bg-white">
-  <div class="flex justify-between mb-2">
-    <h4 class="font-bold">{{ worker.name }} ({{ worker.count }})</h4>
-    <span class="text-sm bg-gray-100 px-2 py-1 rounded">Prod: {{ worker.baseProduction }}/s</span>
+<div class="worker-card">
+  
+  <div class="card-header">
+    <div class="flex-wrapper" style="display:flex; gap:10px; align-items:center;">
+      <div class="icon-box">{{ getWorkerIcon() }}</div>
+      <div class="worker-info">
+        <h4>{{ worker.name }}</h4>
+        <div class="worker-lvl">NVL {{ worker.baseProduction }}</div>
+      </div>
+    </div>
+    <div class="worker-count">
+      <div class="count-num">{{ worker.count }}</div>
+      <div class="count-label">Activos</div>
+    </div>
   </div>
 
-  <div class="actions grid grid-cols-2 gap-2">
-    <button 
-      (click)="game.hireWorker(worker.id)" 
-      [disabled]="!canAfford(worker.hireCost)"
-      class="bg-blue-600 text-white px-2 py-1 rounded text-xs disabled:bg-gray-300">
-      Contratar ({{ worker.hireCost }} €)
-    </button>
-    
-    <button 
-      (click)="game.upgradeWorker(worker.id)"
-      [disabled]="!canAfford(worker.upgradeCost) || worker.count === 0"
-      class="bg-purple-600 text-white px-2 py-1 rounded text-xs disabled:bg-gray-300">
-      Mejorar ({{ worker.upgradeCost }} €)
+  <div class="card-body">
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-label">Producción</div>
+        <div class="stat-value green">+{{ worker.baseProduction * worker.count }} <small>/s</small></div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Velocidad</div>
+        <div class="stat-value yellow">{{ worker.speedMs / 1000 }}s</div>
+      </div>
+    </div>
+
+    <!-- Barra decorativa -->
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-industrial btn-hire" (click)="game.hireWorker(worker.id)" [disabled]="!canAfford(worker.hireCost)">
+        <span class="btn-label">Contratar</span>
+        <span class="btn-cost">{{ worker.hireCost }} €</span>
+      </button>
+
+      <button class="btn-industrial btn-upgrade" (click)="game.upgradeWorker(worker.id)" [disabled]="!canAfford(worker.upgradeCost) || worker.count === 0">
+        <span class="btn-label">Mejorar</span>
+        <span class="btn-cost">{{ worker.upgradeCost }} €</span>
+      </button>
+    </div>
+
+    <button *ngIf="worker.count === 0" class="btn-manual" (click)="game.manualGather(worker.targetResource)">
+      ⚠️ Recolectar Manual
     </button>
   </div>
-  
-  <!-- Botón de emergencia -->
-  <button *ngIf="worker.count === 0" 
-    (click)="game.manualGather(worker.targetResource)"
-    class="w-full mt-2 text-xs border border-dashed border-gray-400 py-1">
-    Recolectar Manualmente
-  </button>
+
 </div>

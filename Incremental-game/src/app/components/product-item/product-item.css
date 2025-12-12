@@ -1,0 +1,99 @@
+:host { display: block; }
+
+.product-card {
+  background: #0f172a; /* Slate 900 - Más oscuro que el trabajador */
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  color: #cbd5e1;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+.product-card:hover {
+  border-color: #f97316; /* Naranja industrial */
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+}
+
+/* --- DECORACIÓN DE FONDO --- */
+/* Patrón de rejilla tipo plano */
+.bg-grid {
+  position: absolute; inset: 0; opacity: 0.05;
+  background-image: radial-gradient(#94a3b8 1px, transparent 1px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+/* Icono gigante decorativo */
+.bg-icon {
+  position: absolute; right: -15px; top: -15px;
+  font-size: 6rem; opacity: 0.05; 
+  transform: rotate(15deg);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.product-card:hover .bg-icon { 
+  opacity: 0.15; 
+  transform: rotate(0deg) scale(1.1); 
+  color: #f97316;
+}
+
+/* --- CONTENIDO --- */
+.content { position: relative; z-index: 10; display: flex; flex-direction: column; height: 100%; gap: 12px;}
+
+.header { display: flex; justify-content: space-between; align-items: flex-start; }
+.title { font-size: 1.1rem; font-weight: 800; color: white; margin: 0; letter-spacing: 0.5px; }
+
+/* Badge de Stock */
+.stock-badge {
+  font-size: 0.7rem; background: #1e293b; padding: 2px 8px; border-radius: 99px;
+  border: 1px solid #334155; display: inline-flex; align-items: center; gap: 6px; margin-top: 4px;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; transition: background 0.3s; }
+.dot.active { background: #22c55e; box-shadow: 0 0 5px #22c55e; }
+
+/* --- RECETA --- */
+.recipe-box {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px; padding: 8px;
+}
+.recipe-label { 
+  font-size: 0.6rem; text-transform: uppercase; color: #64748b; 
+  font-weight: 800; margin-bottom: 6px; display: block; border-bottom: 1px solid #334155; padding-bottom: 2px;
+}
+
+.recipe-items { display: flex; flex-wrap: wrap; gap: 6px; }
+.res-tag {
+  font-size: 0.75rem; background: #0f172a; border: 1px solid #334155;
+  padding: 3px 8px; border-radius: 4px; display: flex; align-items: center; gap: 6px;
+  color: #94a3b8;
+}
+.res-tag strong { color: white; }
+
+/* --- BOTONES --- */
+.actions { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.btn {
+  border: none; padding: 10px; border-radius: 6px; cursor: pointer;
+  font-weight: 800; font-size: 0.8rem; color: white;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: all 0.2s;
+  border-bottom: 3px solid rgba(0,0,0,0.3);
+  text-transform: uppercase;
+}
+.btn:active { transform: translateY(2px); border-bottom-width: 0; }
+.btn:disabled { 
+  background: #1e293b; color: #475569; 
+  cursor: not-allowed; border-bottom-color: #0f172a; transform: none; 
+}
+
+/* Botón Fabricar (Azul Técnico) */
+.btn-craft { background: linear-gradient(to bottom, #2563eb, #1d4ed8); }
+.btn-craft:hover:not(:disabled) { background: linear-gradient(to bottom, #3b82f6, #2563eb); }
+
+/* Botón Vender (Naranja/Ámbar) */
+.btn-sell { background: linear-gradient(to bottom, #d97706, #b45309); }
+.btn-sell:hover:not(:disabled) { background: linear-gradient(to bottom, #f59e0b, #d97706); }
