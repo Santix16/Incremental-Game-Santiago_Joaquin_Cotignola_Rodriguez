@@ -1,4 +1,4 @@
-import { Injectable, signal, WritableSignal, computed } from '@angular/core';
+import { Injectable, signal, WritableSignal, computed, effect } from '@angular/core';
 import { GameState } from '../interfaces/game-state';
 import { Resource, ResourceType } from '../interfaces/resource';
 import { WorkerUnit } from '../interfaces/worker';
@@ -29,8 +29,14 @@ export class GameService {
   ]);
 
   constructor(private sound: SoundService) {
-    // El corazón del juego: Late cada 100ms
+    // 1. Intentar cargar partida guardada al iniciar
+    this.loadGame();
+
+    // 2. El corazón del juego: Late cada 100ms
     setInterval(() => this.gameLoop(), 100);
+
+    // 3. Auto-Guardado: Guardar cada 5 segundos para asegurar persistencia
+    setInterval(() => this.saveGame(), 5000);
   }
 
   // Exponer el estado
@@ -41,6 +47,44 @@ export class GameService {
       workers: this._workers,
       products: this._products
     };
+  }
+
+  // --- PERSISTENCIA DE DATOS (NUEVO) ---
+
+  saveGame() {
+    const saveObject = {
+      money: this._money(),
+      resources: this._resources(),
+      workers: this._workers(),
+      products: this._products()
+    };
+    localStorage.setItem('tycoon_save_v1', JSON.stringify(saveObject));
+    console.log('Juego guardado automáticamente');
+  }
+
+  loadGame() {
+    const savedData = localStorage.getItem('tycoon_save_v1');
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        
+        // Restauramos los valores si existen en el guardado
+        if (parsed.money !== undefined) this._money.set(parsed.money);
+        if (parsed.resources) this._resources.set(parsed.resources);
+        if (parsed.workers) this._workers.set(parsed.workers);
+        if (parsed.products) this._products.set(parsed.products);
+        
+        console.log('Progreso restaurado con éxito');
+      } catch (e) {
+        console.error('Error al cargar la partida:', e);
+      }
+    }
+  }
+
+  // Método para reiniciar partida (Útil para configuración)
+  resetGame() {
+    localStorage.removeItem('tycoon_save_v1');
+    location.reload();
   }
 
   // --- LÓGICA AUTOMÁTICA ---
@@ -60,7 +104,7 @@ export class GameService {
           resourcesChanged = true;
           
           // Efecto de sonido aleatorio (para no saturar)
-          if (Math.random() > 0.95) this.sound.click(); 
+          if (Math.random() > 0.98) this.sound.click(); 
         }
       }
     });
@@ -79,6 +123,7 @@ export class GameService {
       r.type === type ? { ...r, amount: r.amount + 1 } : r
     ));
     this.sound.click();
+    this.saveGame(); // Guardar al interactuar manualmente también es buena idea
   }
 
   // Contratar nuevo empleado
@@ -95,6 +140,7 @@ export class GameService {
       
       this.sound.upgrade();
       this._workers.set([...workers]); // Disparamos actualización
+      this.saveGame();
     }
   }
 
@@ -112,11 +158,12 @@ export class GameService {
       
       this.sound.upgrade();
       this._workers.set([...workers]);
+      this.saveGame();
     }
   }
 
-  // Fabricar Producto
-   craftProduct(productId: number, amount: number = 1) {
+  // Fabricar Producto (Actualizado para cantidades)
+  craftProduct(productId: number, amount: number = 1) {
     const products = this._products();
     const product = products.find(p => p.id === productId);
     const resources = this._resources();
@@ -150,6 +197,7 @@ export class GameService {
       
       this._resources.set([...resources]);
       this._products.set([...products]);
+      this.saveGame();
     }
   }
 
@@ -168,6 +216,7 @@ export class GameService {
         this._money.update(m => m + (product.sellPrice * amountToSell));
         this.sound.click(); // Sonido de dinero
         this._products.set([...products]);
+        this.saveGame();
       }
     }
   }
