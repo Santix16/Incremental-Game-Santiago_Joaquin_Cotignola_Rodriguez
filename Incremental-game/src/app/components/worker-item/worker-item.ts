@@ -15,6 +15,15 @@ export class WorkerItem {
 
   constructor(public game: GameService) {}
 
+  // Calcula el coste real aplicando el multiplicador actual
+  get effectiveHireCost(): number {
+    return Math.floor(this.worker.hireCost * this.game.difficultyMultiplier);
+  }
+
+  get effectiveUpgradeCost(): number {
+    return Math.floor(this.worker.upgradeCost * this.game.difficultyMultiplier);
+  }
+
   canAfford(cost: number): boolean { return this.game.state().money() >= cost; }
 
   getWorkerIcon(): string {

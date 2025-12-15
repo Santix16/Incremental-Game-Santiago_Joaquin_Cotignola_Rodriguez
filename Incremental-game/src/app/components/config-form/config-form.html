@@ -2,10 +2,10 @@
   
   <!-- Audio -->
   <div class="option-group">
-    <span class="option-label">Audio & Notificaciones</span>
+    <span class="option-label">Audio & Sistema</span>
     
     <div class="control-row">
-      <span class="control-name">Volumen Maestro ({{ settings.volume }}%)</span>
+      <span class="control-name">Volumen ({{ settings.volume }}%)</span>
       <div class="range-track" (click)="setVolume($event)">
         <div class="range-fill" [style.width.%]="settings.volume">
           <div class="range-thumb"></div>
@@ -14,34 +14,44 @@
     </div>
 
     <div class="control-row" (click)="toggleSfx()">
-      <span class="control-name">Efectos SFX</span>
+      <span class="control-name">Efectos Sonido (SFX)</span>
       <div class="toggle" [class.active]="settings.sfxEnabled">
         <div class="toggle-knob"></div>
       </div>
     </div>
   </div>
 
-  <!-- Gameplay -->
+  <!-- DIFICULTAD -->
   <div class="option-group">
-    <span class="option-label">Sistema</span>
+    <span class="option-label">Protocolo de Dificultad</span>
     
-    <div class="control-row" (click)="toggleNotifications()">
-      <span class="control-name">Notificaciones Pop-up</span>
-      <div class="toggle" [class.active]="settings.notificationsEnabled">
-        <div class="toggle-knob"></div>
-      </div>
+    <div class="difficulty-selector">
+      <button class="diff-btn easy" 
+              [class.selected]="settings.difficulty === 'easy'"
+              (click)="setDifficulty('easy')">
+        FÁCIL <span class="diff-val">x0.8 Coste</span>
+      </button>
+      
+      <button class="diff-btn normal" 
+              [class.selected]="settings.difficulty === 'normal'"
+              (click)="setDifficulty('normal')">
+        NORMAL <span class="diff-val">x1.0 Coste</span>
+      </button>
+      
+      <button class="diff-btn hard" 
+              [class.selected]="settings.difficulty === 'hard'"
+              (click)="setDifficulty('hard')">
+        DIFÍCIL <span class="diff-val">x1.5 Coste</span>
+      </button>
     </div>
     
-    <div class="control-row" (click)="togglePowerMode()">
-      <span class="control-name">Modo Ahorro Energía</span>
-      <div class="toggle" [class.active]="settings.powerSavingMode">
-        <div class="toggle-knob"></div>
-      </div>
-    </div>
+    <p class="diff-desc">
+      Afecta al coste de contratación, mejora de herramientas y recursos necesarios para fabricación.
+    </p>
   </div>
 
   <button (click)="save()" class="btn-save">
-    Confirmar y Guardar
+    Confirmar Configuración
   </button>
 
 </div>

@@ -26,20 +26,21 @@
       </div>
     </div>
 
-    <!-- Barra decorativa -->
     <div class="progress-track">
       <div class="progress-fill"></div>
     </div>
 
     <div class="actions">
-      <button class="btn-industrial btn-hire" (click)="game.hireWorker(worker.id)" [disabled]="!canAfford(worker.hireCost)">
+      <!-- Usamos effectiveHireCost -->
+      <button class="btn-industrial btn-hire" (click)="game.hireWorker(worker.id)" [disabled]="!canAfford(effectiveHireCost)">
         <span class="btn-label">Contratar</span>
-        <span class="btn-cost">{{ worker.hireCost }} €</span>
+        <span class="btn-cost">{{ effectiveHireCost }} €</span>
       </button>
 
-      <button class="btn-industrial btn-upgrade" (click)="game.upgradeWorker(worker.id)" [disabled]="!canAfford(worker.upgradeCost) || worker.count === 0">
+      <!-- Usamos effectiveUpgradeCost -->
+      <button class="btn-industrial btn-upgrade" (click)="game.upgradeWorker(worker.id)" [disabled]="!canAfford(effectiveUpgradeCost) || worker.count === 0">
         <span class="btn-label">Mejorar</span>
-        <span class="btn-cost">{{ worker.upgradeCost }} €</span>
+        <span class="btn-cost">{{ effectiveUpgradeCost }} €</span>
       </button>
     </div>
 

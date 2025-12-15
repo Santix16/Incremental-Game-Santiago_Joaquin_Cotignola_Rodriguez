@@ -1,11 +1,9 @@
 <div class="product-card">
-  <!-- Elementos decorativos de fondo -->
   <div class="bg-grid"></div>
   <div class="bg-icon">{{ product.icon }}</div>
 
   <div class="content">
     
-    <!-- Header: Nombre y Stock -->
     <div class="header">
       <div>
         <h4 class="title">{{ product.name }}</h4>
@@ -14,26 +12,23 @@
           Stock: {{ product.stock }}
         </div>
       </div>
-      <!-- Icono principal visible -->
       <div style="font-size: 2.5rem; line-height: 1;">{{ product.icon }}</div>
     </div>
 
-    <!-- Caja de Receta -->
     <div class="recipe-box">
       <span class="recipe-label">Requisitos de Montaje</span>
       <div class="recipe-items">
         <div *ngFor="let req of product.cost" class="res-tag">
           <span>{{ getResourceIcon(req.type) }}</span>
-          <strong>{{ req.amount }}</strong>
+          <!-- Mostramos la cantidad requerida ajustada por dificultad -->
+          <strong>{{ getReqAmount(req.amount) }}</strong>
           <span style="font-size: 0.6rem; opacity: 0.7; text-transform: uppercase;">{{ req.type }}</span>
         </div>
       </div>
     </div>
 
-    <!-- Botonera -->
     <div class="actions">
       
-      <!-- Fila FABRICAR -->
       <div class="btn-group">
         <div class="group-label" style="color: #60a5fa;">FABRICAR 🔨</div>
         <div class="grid-3">
@@ -43,7 +38,6 @@
         </div>
       </div>
       
-      <!-- Fila VENDER -->
       <div class="btn-group">
         <div class="group-label" style="color: #fbbf24;">VENDER 💰</div>
         <div class="grid-3">
@@ -55,7 +49,6 @@
 
     </div>
     
-    <!-- Info Precio Venta -->
     <div style="text-align: right; font-size: 0.65rem; color: #94a3b8; margin-top: 6px;">
        Precio/Unidad: <span style="color: #fbbf24; font-weight: bold;">{{ product.sellPrice }} €</span>
     </div>
