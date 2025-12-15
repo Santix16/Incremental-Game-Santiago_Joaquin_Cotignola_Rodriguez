@@ -1,15 +1,47 @@
-<h3>Opciones del Juego</h3>
+<div class="config-panel">
+  
+  <!-- Audio -->
+  <div class="option-group">
+    <span class="option-label">Audio & Notificaciones</span>
+    
+    <div class="control-row">
+      <span class="control-name">Volumen Maestro ({{ settings.volume }}%)</span>
+      <div class="range-track" (click)="setVolume($event)">
+        <div class="range-fill" [style.width.%]="settings.volume">
+          <div class="range-thumb"></div>
+        </div>
+      </div>
+    </div>
 
-<label>Dificultad:</label>
-<select [(ngModel)]="game.state().difficulty">
-  <option value="easy">Fácil</option>
-  <option value="medium">Media</option>
-  <option value="hard">Difícil</option>
-</select>
+    <div class="control-row" (click)="toggleSfx()">
+      <span class="control-name">Efectos SFX</span>
+      <div class="toggle" [class.active]="settings.sfxEnabled">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+  </div>
 
-<br/><br/>
+  <!-- Gameplay -->
+  <div class="option-group">
+    <span class="option-label">Sistema</span>
+    
+    <div class="control-row" (click)="toggleNotifications()">
+      <span class="control-name">Notificaciones Pop-up</span>
+      <div class="toggle" [class.active]="settings.notificationsEnabled">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+    
+    <div class="control-row" (click)="togglePowerMode()">
+      <span class="control-name">Modo Ahorro Energía</span>
+      <div class="toggle" [class.active]="settings.powerSavingMode">
+        <div class="toggle-knob"></div>
+      </div>
+    </div>
+  </div>
 
-<button (click)="save()">Guardar</button>
+  <button (click)="save()" class="btn-save">
+    Confirmar y Guardar
+  </button>
 
-
-
+</div>

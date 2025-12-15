@@ -1,4 +1,37 @@
-<h2>Configuración</h2>
-<app-config-form></app-config-form>
-<button routerLink="/">Volver al Menú</button>
+<div class="settings-container">
+  
+  <div class="settings-card">
+    
+    <div class="card-header">
+      <h2 class="header-title">
+        <span class="icon">⚙️</span> Configuración
+      </h2>
+      <div style="font-family: monospace; font-size: 0.75rem; color: #64748b;">SYS.CONFIG.V1</div>
+    </div>
 
+    <div class="card-body">
+      
+      <!-- Componente Formulario Interno -->
+      <app-config-form></app-config-form>
+
+      <!-- ZONA DE PELIGRO -->
+      <div class="danger-zone">
+        <span class="danger-title">⚠️ Zona de Peligro</span>
+        <p class="danger-desc">
+          Esta acción eliminará permanentemente todo tu progreso, trabajadores y dinero acumulado. No se puede deshacer.
+        </p>
+        <button (click)="resetGame()" class="btn-reset">
+          ☢️ Reiniciar Progreso de Fábrica
+        </button>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <button routerLink="/menu" class="btn-back">
+        <span>ESC</span> Volver al Menú Principal
+      </button>
+    </div>
+
+  </div>
+</div>

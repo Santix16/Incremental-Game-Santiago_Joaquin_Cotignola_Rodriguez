@@ -1,0 +1,83 @@
+/* --- LAYOUT GLOBAL --- */
+.settings-container {
+  min-height: 100vh;
+  background-color: #020617;
+  background-image: 
+    linear-gradient(rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95)),
+    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDQwTDQwIDBIMjBMMCAyME00MCA0MFYyMEwwIDQwcSIgc3R5bGU9ImZpbGw6IzMzNDE1NTtmaWxsLW9wYWNpdHk6MC4wNSIvPjwvZz48L3N2Zz4=');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #f1f5f9;
+  padding: 20px;
+}
+
+/* --- TARJETA PRINCIPAL --- */
+.settings-card {
+  width: 100%; max-width: 600px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Header */
+.card-header {
+  background: #1e293b;
+  padding: 20px 30px;
+  border-bottom: 1px solid #334155;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.header-title {
+  font-size: 1.25rem; font-weight: 900; letter-spacing: 1px; color: white;
+  text-transform: uppercase; margin: 0; display: flex; align-items: center; gap: 10px;
+}
+.icon { color: #94a3b8; }
+
+/* Body */
+.card-body {
+  padding: 30px;
+}
+
+/* Danger Zone */
+.danger-zone {
+  margin-top: 30px;
+  border: 1px dashed #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+  border-radius: 8px;
+  padding: 20px;
+}
+.danger-title {
+  color: #ef4444; font-weight: bold; text-transform: uppercase; font-size: 0.8rem;
+  letter-spacing: 1px; margin-bottom: 8px; display: block;
+}
+.danger-desc {
+  font-size: 0.85rem; color: #94a3b8; margin-bottom: 16px;
+}
+
+.btn-reset {
+  background: transparent; border: 1px solid #ef4444;
+  color: #ef4444; padding: 10px 20px; border-radius: 6px;
+  font-weight: bold; cursor: pointer; transition: all 0.2s;
+  width: 100%; text-transform: uppercase; font-size: 0.8rem;
+}
+.btn-reset:hover {
+  background: #ef4444; color: white;
+}
+
+/* Footer */
+.card-footer {
+  background: #020617;
+  padding: 16px 30px;
+  border-top: 1px solid #1e293b;
+  text-align: right;
+}
+.btn-back {
+  background: transparent; border: none;
+  color: #64748b; font-weight: bold; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color 0.2s;
+}
+.btn-back:hover { color: white; }

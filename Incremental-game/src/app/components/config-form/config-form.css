@@ -1,0 +1,72 @@
+:host { display: block; }
+
+.config-panel {
+  background: rgba(15, 23, 42, 0.6); /* Slate 900 semi-transparent */
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 20px;
+  user-select: none; /* Evita seleccionar texto al hacer click */
+}
+
+/* --- SECCIONES --- */
+.option-group {
+  margin-bottom: 24px;
+}
+
+.option-label {
+  display: block; font-size: 0.75rem; text-transform: uppercase; 
+  color: #94a3b8; font-weight: bold; letter-spacing: 1px;
+  margin-bottom: 12px; border-bottom: 1px solid #334155; padding-bottom: 4px;
+}
+
+/* --- CONTROLES --- */
+.control-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+  cursor: pointer; /* Indica que es clickable */
+  padding: 4px 0;
+}
+.control-row:hover .control-name { color: white; }
+
+.control-name { font-size: 0.9rem; color: #e2e8f0; transition: color 0.2s; }
+
+/* Toggle Switch */
+.toggle {
+  width: 40px; height: 20px; background: #334155; border-radius: 10px;
+  position: relative; transition: background 0.3s;
+}
+.toggle.active { background: #3b82f6; }
+.toggle-knob {
+  width: 16px; height: 16px; background: white; border-radius: 50%;
+  position: absolute; top: 2px; left: 2px; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.toggle.active .toggle-knob { transform: translateX(20px); }
+
+/* Range Slider */
+.range-track {
+  width: 150px; height: 6px; background: #334155; border-radius: 3px; 
+  position: relative; cursor: pointer; padding: 4px 0; /* Área de click más grande */
+  background-clip: content-box; /* Ajuste para el padding */
+}
+.range-fill {
+  height: 6px; background: #3b82f6; border-radius: 3px; position: relative;
+  pointer-events: none; /* Deja pasar clicks al track */
+}
+.range-thumb {
+  width: 14px; height: 14px; background: white; border-radius: 50%;
+  position: absolute; top: 50%; transform: translate(50%, -50%); right: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* --- BOTÓN GUARDAR --- */
+.btn-save {
+  width: 100%;
+  background: linear-gradient(to bottom, #3b82f6, #2563eb);
+  color: white; border: none; padding: 12px; border-radius: 6px;
+  font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+  cursor: pointer; transition: all 0.2s;
+  border-bottom: 3px solid #1e40af;
+}
+.btn-save:hover { background: linear-gradient(to bottom, #60a5fa, #3b82f6); }
+.btn-save:active { transform: translateY(2px); border-bottom-width: 0; }
