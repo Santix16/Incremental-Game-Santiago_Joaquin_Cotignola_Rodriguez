@@ -96,9 +96,36 @@ export class GameService {
     }
   }
 
+  // Reinicia y recarga la página (útil para fallos graves)
   resetGame() {
     localStorage.removeItem('tycoon_save_v1');
     location.reload();
+  }
+
+  // Reinicia el estado en memoria para Nueva Partida (sin recargar)
+  hardReset() {
+    localStorage.removeItem('tycoon_save_v1');
+    
+    // Restaurar valores iniciales
+    this._money.set(100);
+    this._resources.set([
+      { type: 'wood', name: 'Madera', amount: 0, icon: '🌲' },
+      { type: 'iron', name: 'Hierro', amount: 0, icon: '⛏️' },
+      { type: 'silicon', name: 'Silicio', amount: 0, icon: '💠' }
+    ]);
+    this._workers.set([
+      { id: 1, name: 'Leñador', targetResource: 'wood', count: 1, baseProduction: 1, speedMs: 2000, hireCost: 50, upgradeCost: 100, lastWorked: 0 },
+      { id: 2, name: 'Minero', targetResource: 'iron', count: 0, baseProduction: 1, speedMs: 3000, hireCost: 150, upgradeCost: 300, lastWorked: 0 },
+      { id: 3, name: 'Ingeniero', targetResource: 'silicon', count: 0, baseProduction: 1, speedMs: 5000, hireCost: 500, upgradeCost: 1000, lastWorked: 0 }
+    ]);
+    this._products.set([
+      { id: 1, name: 'Silla Básica', cost: [{type: 'wood', amount: 5}], sellPrice: 15, stock: 0, icon: '🪑' },
+      { id: 2, name: 'Espada Hierro', cost: [{type: 'wood', amount: 2}, {type: 'iron', amount: 3}], sellPrice: 40, stock: 0, icon: '⚔️' },
+      { id: 3, name: 'Chip', cost: [{type: 'silicon', amount: 4}, {type: 'iron', amount: 1}], sellPrice: 120, stock: 0, icon: '💾' }
+    ]);
+    
+    // No reseteamos settings para no molestar al usuario
+    this.saveGame();
   }
 
   // --- GAME LOOP ---
@@ -135,7 +162,6 @@ export class GameService {
     const workers = this._workers();
     const worker = workers.find(w => w.id === workerId);
     
-    // CORRECCIÓN: Verificamos si existe antes de usarlo
     if (!worker) return;
 
     // Calculamos el coste real basado en la dificultad
@@ -155,7 +181,6 @@ export class GameService {
     const workers = this._workers();
     const worker = workers.find(w => w.id === workerId);
     
-    // CORRECCIÓN: Verificamos si existe antes de usarlo
     if (!worker) return;
 
     const effectiveCost = Math.floor(worker.upgradeCost * this.difficultyMultiplier);

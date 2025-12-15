@@ -6,7 +6,7 @@
     radial-gradient(circle at 50% 0%, #1e293b 0%, #020617 80%),
     linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 100% 100%, 40px 40px, 40px 40px; /* Tamaño de la rejilla */
+  background-size: 100% 100%, 40px 40px, 40px 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,6 @@
   overflow: hidden;
 }
 
-/* Efecto de viñeta oscurecida en los bordes */
 .menu-container::after {
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(circle, transparent 40%, #000 100%);
@@ -32,7 +31,7 @@
   text-align: center;
 }
 
-/* --- LOGOTIPO / TÍTULO --- */
+/* --- LOGOTIPO --- */
 .title-box { margin-bottom: 20px; }
 
 .main-title {
@@ -46,17 +45,16 @@
 .subtitle {
   font-size: 1.2rem; font-weight: 900; letter-spacing: 4px; color: #3b82f6;
   text-transform: uppercase; margin-top: -5px; display: block;
-  text-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* Neon glow */
+  text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
 }
 
-/* --- BOTONES DE NAVEGACIÓN --- */
+/* --- BOTONES --- */
 .nav-group { display: flex; flex-direction: column; gap: 16px; }
 
-/* Estilo Base de Botón */
 .menu-btn {
-  background: rgba(15, 23, 42, 0.8); /* Slate 900 semi-transparente */
+  background: rgba(15, 23, 42, 0.8);
   border: 1px solid #334155;
-  border-left: 4px solid #475569; /* Borde izquierdo gris por defecto */
+  border-left: 4px solid #475569;
   padding: 16px 24px;
   color: #cbd5e1;
   font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
@@ -67,33 +65,42 @@
   display: flex; justify-content: space-between; align-items: center;
 }
 
-/* Efecto Hover */
 .menu-btn:hover {
-  background: #1e293b;
-  color: white;
-  padding-left: 32px; /* Desplazamiento a la derecha */
-  border-left-color: #3b82f6; /* Borde azul al hover */
+  background: #1e293b; color: white;
+  padding-left: 32px;
+  border-left-color: #3b82f6;
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
 }
 
 .btn-icon { opacity: 0; transform: translateX(-10px); transition: all 0.2s; }
 .menu-btn:hover .btn-icon { opacity: 1; transform: translateX(0); }
 
-/* Botón JUGAR (Primario) */
+/* Continuar (Azul) */
 .btn-play {
-  background: linear-gradient(90deg, #1eb83f, #1eb83f);
-  border: none; border-left: 4px solid #ffffff;
+  background: linear-gradient(90deg, #1d4ed8, #1e40af);
+  border: none; border-left: 4px solid #60a5fa;
   color: white; font-size: 1.2rem; padding: 20px 24px;
   justify-content: center; text-align: center;
 }
 .btn-play:hover {
   background: linear-gradient(90deg, #2563eb, #1d4ed8);
-  transform: scale(1.02);
-  padding-left: 24px; /* No desplazar texto en este */
+  transform: scale(1.02); padding-left: 24px;
   box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
 }
 
-/* Botón SALIR (Peligro) */
+/* Nueva Partida (Cian/Verde) */
+.btn-new {
+  background: transparent;
+  border: 1px solid #0d9488; border-left: 4px solid #14b8a6;
+  color: #ccfbf1;
+}
+.btn-new:hover {
+  background: rgba(20, 184, 166, 0.1);
+  border-left-color: #2dd4bf;
+  box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
+}
+
+/* Salir */
 .btn-exit {
   margin-top: 20px;
   background: transparent; border: 1px dashed #ef4444; border-left: none;
@@ -105,7 +112,6 @@
   border-left: none; box-shadow: none;
 }
 
-/* --- FOOTER / VERSIÓN --- */
 .version {
   position: absolute; bottom: 20px; right: 20px;
   font-family: monospace; color: #475569; font-size: 0.8rem;

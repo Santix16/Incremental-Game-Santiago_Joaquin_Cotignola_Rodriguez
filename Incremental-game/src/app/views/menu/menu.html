@@ -2,43 +2,43 @@
   
   <div class="menu-card">
     
-    <!-- Título / Logo -->
     <div class="title-box">
       <h1 class="main-title">TYCOON</h1>
       <span class="subtitle">INC.</span>
     </div>
 
-    <!-- Menú de Navegación -->
     <nav class="nav-group">
       
-      <!-- Botón Principal -->
+      <!-- Continuar (Botón Principal) -->
       <button (click)="nav('/game')" class="menu-btn btn-play">
         <span>► Continuar</span>
       </button>
 
-      <button (click)="nav('/new-game')" class="menu-btn">
-        <span>Nueva Partida</span>
-        <span class="btn-icon">🆕</span>
-        </button>
-
-      <button (click)="nav('/settings')" class="menu-btn">
-        <span>Configuración</span>
-        <span class="btn-icon">⚙️</span>
+      <!-- Nueva Partida -->
+      <button (click)="newGame()" class="menu-btn btn-new">
+        <span>★ Nueva Partida</span>
+        <span class="btn-icon">⚡</span>
       </button>
+
+      <div style="height: 1px; background: #334155; margin: 8px 0;"></div>
 
       <button (click)="nav('/stats')" class="menu-btn">
         <span>Logros</span>
         <span class="btn-icon">🏆</span>
       </button>
 
+      <button (click)="nav('/settings')" class="menu-btn">
+        <span>Configuración</span>
+        <span class="btn-icon">⚙️</span>
+      </button>
+
       <button (click)="nav('/credits')" class="menu-btn">
         <span>Créditos</span>
         <span class="btn-icon">👥</span>
       </button>
-
     </nav>
 
   </div>
 
-  <div class="version">v0.2.0-beta</div>
+  <div class="version">v0.2.1-beta</div>
 </div>
