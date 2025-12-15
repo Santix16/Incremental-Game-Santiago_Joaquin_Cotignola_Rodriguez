@@ -1,0 +1,99 @@
+/* --- FONDO GLOBAL --- */
+.credits-container {
+  min-height: 100vh;
+  background-color: #020617; /* Slate 950 */
+  background-image: 
+    radial-gradient(circle at 50% 100%, #1e293b 0%, #020617 70%),
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 50px 50px, 50px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #e2e8f0;
+  padding: 20px;
+}
+
+/* --- TARJETA PRINCIPAL --- */
+.credits-card {
+  width: 100%; max-width: 500px;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid #334155;
+  border-top: 4px solid #3b82f6; /* Acento azul */
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Cabecera */
+.card-header {
+  padding: 30px 40px;
+  text-align: center;
+  border-bottom: 1px solid #1e293b;
+  background: #0f172a;
+}
+.title {
+  font-size: 2rem; font-weight: 900; letter-spacing: 2px;
+  margin: 0; color: white; text-transform: uppercase;
+}
+.subtitle {
+  font-size: 0.8rem; color: #64748b; font-weight: bold; 
+  text-transform: uppercase; letter-spacing: 1px; display: block; margin-top: 4px;
+}
+
+/* Cuerpo */
+.card-body {
+  padding: 40px;
+  display: flex; flex-direction: column; gap: 32px;
+  align-items: center;
+}
+
+/* Sección de Equipo */
+.team-section { text-align: center; width: 100%; }
+.role-title {
+  font-size: 0.75rem; color: #3b82f6; font-weight: bold; 
+  text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;
+  display: inline-block; border-bottom: 1px solid #3b82f6; padding-bottom: 4px;
+}
+
+.dev-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+.dev-item {
+  background: #1e293b;
+  border: 1px solid #334155;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold; font-size: 1.1rem;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.dev-item:hover {
+  border-color: #60a5fa; transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+.icon { font-size: 1.2rem; }
+
+/* Botón Volver */
+.card-footer {
+  padding: 20px 40px;
+  background: #0f172a;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+}
+
+.btn-back {
+  background: transparent; border: 1px solid #475569;
+  color: #94a3b8; padding: 10px 24px; border-radius: 6px;
+  font-weight: bold; text-transform: uppercase; font-size: 0.8rem;
+  cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-back:hover {
+  border-color: white; color: white; background: rgba(255,255,255,0.05);
+}

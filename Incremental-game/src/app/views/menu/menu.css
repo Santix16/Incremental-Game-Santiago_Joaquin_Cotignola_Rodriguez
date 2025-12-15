@@ -1,0 +1,112 @@
+/* --- FONDO Y CONTENEDOR --- */
+.menu-container {
+  min-height: 100vh;
+  background-color: #020617; /* Slate 950 */
+  background-image: 
+    radial-gradient(circle at 50% 0%, #1e293b 0%, #020617 80%),
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px; /* Tamaño de la rejilla */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de viñeta oscurecida en los bordes */
+.menu-container::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle, transparent 40%, #000 100%);
+  pointer-events: none;
+}
+
+/* --- TARJETA CENTRAL --- */
+.menu-card {
+  position: relative; z-index: 10;
+  width: 100%; max-width: 480px;
+  padding: 40px;
+  display: flex; flex-direction: column; gap: 32px;
+  text-align: center;
+}
+
+/* --- LOGOTIPO / TÍTULO --- */
+.title-box { margin-bottom: 20px; }
+
+.main-title {
+  font-size: 4rem; font-weight: 900; line-height: 1; letter-spacing: -2px;
+  margin: 0;
+  background: linear-gradient(to bottom right, #ffffff, #94a3b8);
+  -webkit-background-clip: text; color: transparent;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.subtitle {
+  font-size: 1.2rem; font-weight: 900; letter-spacing: 4px; color: #3b82f6;
+  text-transform: uppercase; margin-top: -5px; display: block;
+  text-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* Neon glow */
+}
+
+/* --- BOTONES DE NAVEGACIÓN --- */
+.nav-group { display: flex; flex-direction: column; gap: 16px; }
+
+/* Estilo Base de Botón */
+.menu-btn {
+  background: rgba(15, 23, 42, 0.8); /* Slate 900 semi-transparente */
+  border: 1px solid #334155;
+  border-left: 4px solid #475569; /* Borde izquierdo gris por defecto */
+  padding: 16px 24px;
+  color: #cbd5e1;
+  font-size: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative; overflow: hidden;
+  text-align: left;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* Efecto Hover */
+.menu-btn:hover {
+  background: #1e293b;
+  color: white;
+  padding-left: 32px; /* Desplazamiento a la derecha */
+  border-left-color: #3b82f6; /* Borde azul al hover */
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.btn-icon { opacity: 0; transform: translateX(-10px); transition: all 0.2s; }
+.menu-btn:hover .btn-icon { opacity: 1; transform: translateX(0); }
+
+/* Botón JUGAR (Primario) */
+.btn-play {
+  background: linear-gradient(90deg, #1eb83f, #1eb83f);
+  border: none; border-left: 4px solid #ffffff;
+  color: white; font-size: 1.2rem; padding: 20px 24px;
+  justify-content: center; text-align: center;
+}
+.btn-play:hover {
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  transform: scale(1.02);
+  padding-left: 24px; /* No desplazar texto en este */
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+}
+
+/* Botón SALIR (Peligro) */
+.btn-exit {
+  margin-top: 20px;
+  background: transparent; border: 1px dashed #ef4444; border-left: none;
+  color: #ef4444; text-align: center; justify-content: center; font-size: 0.8rem;
+  opacity: 0.7;
+}
+.btn-exit:hover {
+  background: rgba(239, 68, 68, 0.1); opacity: 1; padding-left: 24px;
+  border-left: none; box-shadow: none;
+}
+
+/* --- FOOTER / VERSIÓN --- */
+.version {
+  position: absolute; bottom: 20px; right: 20px;
+  font-family: monospace; color: #475569; font-size: 0.8rem;
+}

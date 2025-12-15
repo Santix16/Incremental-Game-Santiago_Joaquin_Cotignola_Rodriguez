@@ -32,13 +32,32 @@
 
     <!-- Botonera -->
     <div class="actions">
-      <button class="btn btn-craft" (click)="game.craftProduct(product.id)" [disabled]="!canCraft()">
-        <span>🔨</span> Fabricar
-      </button>
       
-      <button class="btn btn-sell" (click)="game.sellProduct(product.id)" [disabled]="product.stock === 0">
-        <span>💰</span> {{ product.sellPrice }} €
-      </button>
+      <!-- Fila FABRICAR -->
+      <div class="btn-group">
+        <div class="group-label" style="color: #60a5fa;">FABRICAR 🔨</div>
+        <div class="grid-3">
+          <button class="btn btn-craft" (click)="craftOne()" [disabled]="maxCraftable() < 1">1</button>
+          <button class="btn btn-craft" (click)="craftTen()" [disabled]="maxCraftable() < 10">10</button>
+          <button class="btn btn-craft" (click)="craftAll()" [disabled]="maxCraftable() === 0">MAX</button>
+        </div>
+      </div>
+      
+      <!-- Fila VENDER -->
+      <div class="btn-group">
+        <div class="group-label" style="color: #fbbf24;">VENDER 💰</div>
+        <div class="grid-3">
+          <button class="btn btn-sell" (click)="sellOne()" [disabled]="product.stock < 1">1</button>
+          <button class="btn btn-sell" (click)="sellTen()" [disabled]="product.stock < 10">10</button>
+          <button class="btn btn-sell" (click)="sellAll()" [disabled]="product.stock === 0">MAX</button>
+        </div>
+      </div>
+
+    </div>
+    
+    <!-- Info Precio Venta -->
+    <div style="text-align: right; font-size: 0.65rem; color: #94a3b8; margin-top: 6px;">
+       Precio/Unidad: <span style="color: #fbbf24; font-weight: bold;">{{ product.sellPrice }} €</span>
     </div>
 
   </div>

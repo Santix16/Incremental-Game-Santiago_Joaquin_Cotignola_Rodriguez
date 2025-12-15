@@ -1,8 +1,42 @@
-<h2>Créditos</h2>
-<ul>
-  <li>Santiago</li>
-  <li>Alejandro</li>
-</ul>
-<button routerLink="/">Volver al Menú</button>
+<div class="credits-container">
+  
+  <div class="credits-card">
+    
+    <div class="card-header">
+      <h2 class="title">Créditos</h2>
+      <span class="subtitle">Equipo de Desarrollo</span>
+    </div>
 
+    <div class="card-body">
+      
+      <!-- Sección Fundadores -->
+      <div class="team-section">
+        <span class="role-title">Desarrolladores</span>
+        <ul class="dev-list">
+          <li class="dev-item">
+            <span class="icon"></span> Santiago
+          </li>
+          <li class="dev-item">
+            <span class="icon"></span> Alejandro
+          </li>
+        </ul>
+      </div>
 
+      <!-- Sección Agradecimientos (Opcional, relleno visual) -->
+      <div class="team-section">
+        <span class="role-title" style="color: #64748b; border-color: #475569;">Tecnologías utilizadas</span>
+        <div style="font-family: monospace; color: #94a3b8; font-size: 0.9rem;">
+          Angular • Electron • TypeScript
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <button (click)="back()" class="btn-back">
+        <span>←</span> Volver al Menú
+      </button>
+    </div>
+
+  </div>
+</div>

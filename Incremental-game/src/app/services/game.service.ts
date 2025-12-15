@@ -116,44 +116,59 @@ export class GameService {
   }
 
   // Fabricar Producto
-  craftProduct(productId: number) {
+   craftProduct(productId: number, amount: number = 1) {
     const products = this._products();
     const product = products.find(p => p.id === productId);
     const resources = this._resources();
 
     if (!product) return;
 
-    // Verificar costes
-    const canCraft = product.cost.every(req => {
+    // Calcular cuántos podemos fabricar como máximo
+    let maxCraftable = Infinity;
+    product.cost.forEach(req => {
       const res = resources.find(r => r.type === req.type);
-      return res && res.amount >= req.amount;
+      if (res) {
+        const canMake = Math.floor(res.amount / req.amount);
+        if (canMake < maxCraftable) maxCraftable = canMake;
+      } else {
+        maxCraftable = 0;
+      }
     });
 
-    if (canCraft) {
+    // Determinar cantidad a fabricar
+    const amountToCraft = (amount === -1) ? maxCraftable : Math.min(amount, maxCraftable);
+
+    if (amountToCraft > 0) {
       // Consumir recursos
       product.cost.forEach(req => {
         const res = resources.find(r => r.type === req.type);
-        if (res) res.amount -= req.amount;
+        if (res) res.amount -= (req.amount * amountToCraft);
       });
       
-      product.stock++;
-      this.sound.upgrade(); // Reutilizo sonido upgrade como sonido de craft
+      product.stock += amountToCraft;
+      this.sound.upgrade(); // Reutilizo sonido
       
       this._resources.set([...resources]);
       this._products.set([...products]);
     }
   }
 
-  // Vender Producto
-  sellProduct(productId: number) {
+  // Vender Producto (Actualizado para cantidades)
+  sellProduct(productId: number, amount: number = 1) {
     const products = this._products();
     const product = products.find(p => p.id === productId);
     
     if (product && product.stock > 0) {
-      product.stock--;
-      this._money.update(m => m + product.sellPrice);
-      this.sound.click(); // Sonido de dinero
-      this._products.set([...products]);
+      // Si amount es -1, vende todo (Max)
+      // Si amount es mayor que stock, vende lo que haya
+      const amountToSell = (amount === -1 || amount > product.stock) ? product.stock : amount;
+
+      if (amountToSell > 0) {
+        product.stock -= amountToSell;
+        this._money.update(m => m + (product.sellPrice * amountToSell));
+        this.sound.click(); // Sonido de dinero
+        this._products.set([...products]);
+      }
     }
   }
 }
