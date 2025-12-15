@@ -18,11 +18,11 @@
         </div>
       </div>
 
-      <!-- Botón Menú -->
-      <a routerLink="/menu" class="nav-btn">
+      <!-- Botón Menú (Ahora abre el Drawer) -->
+      <button (click)="toggleMenu()" class="nav-btn">
         <span class="menu-icon">☰</span> 
-        <span class="hidden-mobile">MENÚ</span>
-      </a>
+        <span class="hidden-mobile">Panel de control</span>
+      </button>
     </div>
 
     <!-- Barra de Recursos (Scroll Horizontal) -->
@@ -77,4 +77,39 @@
     </section>
 
   </main>
+
+  <!-- DRAWER / MENÚ LATERAL -->
+  <div class="drawer-overlay" *ngIf="isMenuOpen" (click)="toggleMenu()"></div>
+  
+  <div class="drawer-panel" [class.open]="isMenuOpen">
+    <div class="drawer-header">
+      <h3>PANEL DE CONTROL</h3>
+      <button class="close-btn" (click)="toggleMenu()">✕</button>
+    </div>
+    
+    <div class="drawer-content">
+      <p class="drawer-label">Gestión</p>
+      
+      <button (click)="navigateTo('/settings')" class="drawer-btn">
+        <span class="icon">⚙️</span> Configuración
+      </button>
+      
+      <button (click)="navigateTo('/stats')" class="drawer-btn">
+        <span class="icon">🏆</span> Logros & Ranking
+      </button>
+      
+      <button (click)="navigateTo('/credits')" class="drawer-btn">
+        <span class="icon">👥</span> Créditos
+      </button>
+      
+      <button (click)="navigateTo('/menu')" class="drawer-btn exit">
+        <span class="icon">🚪</span> Volver al Menú Principal
+      </button>
+    </div>
+    
+    <div class="drawer-footer">
+      Tycoon System v0.2.1
+    </div>
+  </div>
+
 </div>
