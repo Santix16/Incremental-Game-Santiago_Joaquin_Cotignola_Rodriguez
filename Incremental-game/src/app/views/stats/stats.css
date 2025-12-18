@@ -1,0 +1,68 @@
+.stats-container {
+  min-height: 100vh;
+  background-color: #020617;
+  background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #020617 60%);
+  padding: 40px 20px;
+  color: #f8fafc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  display: flex; justify-content: center;
+}
+
+.stats-card {
+  width: 100%; max-width: 800px;
+  background: #0f172a; border: 1px solid #334155; border-radius: 12px;
+  overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Header & Tabs */
+.card-header {
+  background: #1e293b; border-bottom: 1px solid #334155;
+  display: flex;
+}
+
+.tab-btn {
+  flex: 1; padding: 20px; background: transparent; border: none;
+  color: #64748b; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+  cursor: pointer; transition: all 0.2s; border-bottom: 3px solid transparent;
+}
+.tab-btn:hover { background: rgba(255,255,255,0.02); color: #cbd5e1; }
+.tab-btn.active { color: #3b82f6; border-bottom-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+
+/* Content */
+.card-body { padding: 30px; }
+
+/* Achievements List */
+.achievements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+
+.achievement-item {
+  background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
+  transition: all 0.3s; opacity: 0.5; filter: grayscale(1);
+}
+.achievement-item.unlocked {
+  opacity: 1; filter: grayscale(0); border-color: #f59e0b; /* Dorado */
+  background: linear-gradient(to bottom right, #1e293b, #282f45);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.ach-icon { font-size: 2.5rem; margin-bottom: 4px; }
+.ach-name { font-weight: bold; font-size: 0.9rem; color: #e2e8f0; }
+.ach-desc { font-size: 0.7rem; color: #94a3b8; }
+.ach-status { 
+  font-size: 0.6rem; text-transform: uppercase; font-weight: bold; 
+  padding: 2px 6px; border-radius: 4px; margin-top: 4px;
+  background: #334155; color: #94a3b8;
+}
+.achievement-item.unlocked .ach-status { background: #f59e0b; color: #0f172a; }
+
+/* Ranking Table */
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 12px; color: #64748b; font-size: 0.8rem; text-transform: uppercase; border-bottom: 1px solid #334155; }
+td { padding: 16px 12px; border-bottom: 1px solid #1e293b; font-family: monospace; font-size: 0.9rem; }
+tr:last-child td { border-bottom: none; }
+tr:hover { background: rgba(255,255,255,0.02); }
+
+/* Footer */
+.card-footer { padding: 20px; text-align: center; border-top: 1px solid #334155; }
+.btn-back { background: transparent; border: 1px solid #475569; color: #94a3b8; padding: 10px 24px; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+.btn-back:hover { border-color: white; color: white; }

@@ -14,9 +14,4 @@ import { GameService } from '../../services/game.service';
 export class Settings {
   constructor(private game: GameService) {}
 
-  resetGame() {
-    if (confirm('¿ESTÁS SEGURO? Se borrará todo tu progreso.')) {
-      this.game.resetGame();
-    }
-  }
 }

@@ -15,13 +15,16 @@ export class WorkerItem {
 
   constructor(public game: GameService) {}
 
-  // Calcula el coste real aplicando el multiplicador actual
   get effectiveHireCost(): number {
     return Math.floor(this.worker.hireCost * this.game.difficultyMultiplier);
   }
 
   get effectiveUpgradeCost(): number {
     return Math.floor(this.worker.upgradeCost * this.game.difficultyMultiplier);
+  }
+
+  get isMaxed(): boolean {
+    return this.worker.speedMs <= 500;
   }
 
   canAfford(cost: number): boolean { return this.game.state().money() >= cost; }
@@ -31,6 +34,8 @@ export class WorkerItem {
       case 'wood': return '🪓';
       case 'iron': return '⛏️';
       case 'silicon': return '🔬';
+      case 'oil': return '🏗️'; 
+      case 'gold': return '🤠'; 
       default: return '👷';
     }
   }

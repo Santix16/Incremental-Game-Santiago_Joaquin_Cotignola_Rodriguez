@@ -15,7 +15,6 @@ export class ProductItem {
 
   constructor(public game: GameService) {}
 
-  // Helper para obtener cantidad de recursos necesaria según dificultad
   getReqAmount(baseAmount: number): number {
     return Math.ceil(baseAmount * this.game.difficultyMultiplier);
   }
@@ -44,7 +43,13 @@ export class ProductItem {
   }
 
   getResourceIcon(type: string): string {
-    const icons: any = { 'wood': '🌲', 'iron': '⛏️', 'silicon': '💠' };
+    const icons: any = { 
+      'wood': '🌲', 
+      'iron': '⛏️', 
+      'silicon': '💠',
+      'oil': '🛢️',
+      'gold': '✨' 
+    };
     return icons[type] || '❓';
   }
 

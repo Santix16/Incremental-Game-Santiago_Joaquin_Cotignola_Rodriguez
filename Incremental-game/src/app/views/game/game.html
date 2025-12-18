@@ -3,13 +3,9 @@
   <!-- HUD SUPERIOR (STICKY) -->
   <header class="hud">
     <div class="hud-top">
-      
-      <!-- Marca -->
       <div class="brand">
         <h1>TYCOON<span>INC.</span></h1>
       </div>
-
-      <!-- Display Central de Dinero -->
       <div class="money-display">
         <span style="font-size: 1.5rem;">💰</span>
         <div>
@@ -17,15 +13,12 @@
           <div class="money-amount">{{ game.state().money() | number:'1.0-0' }} €</div>
         </div>
       </div>
-
-      <!-- Botón Menú (Ahora abre el Drawer) -->
       <button (click)="toggleMenu()" class="nav-btn">
         <span class="menu-icon">☰</span> 
         <span class="hidden-mobile">Panel de control</span>
       </button>
     </div>
 
-    <!-- Barra de Recursos (Scroll Horizontal) -->
     <div class="resources-bar">
       <div class="res-container">
         <div *ngFor="let res of game.state().resources()" class="res-item">
@@ -39,10 +32,17 @@
     </div>
   </header>
 
+  <!-- NOTIFICACIÓN / TOAST (NUEVO) -->
+  <div class="notification-toast" *ngIf="game.notification()" [class.show]="game.notification()">
+    <div class="toast-icon">{{ game.notification()?.icon }}</div>
+    <div class="toast-content">
+      <span class="toast-title">¡Nuevo Logro!</span>
+      <span class="toast-message">{{ game.notification()?.message }}</span>
+    </div>
+  </div>
+
   <!-- CONTENIDO PRINCIPAL -->
   <main class="dashboard">
-    
-    <!-- SECCIÓN IZQUIERDA: TRABAJADORES -->
     <section>
       <div class="section-header">
         <h2 class="section-title">
@@ -50,16 +50,11 @@
         </h2>
         <span class="status-badge online">● SISTEMAS EN LÍNEA</span>
       </div>
-      
       <div class="grid-workers">
-        <app-worker-item 
-          *ngFor="let worker of game.state().workers()" 
-          [worker]="worker">
-        </app-worker-item>
+        <app-worker-item *ngFor="let worker of game.state().workers()" [worker]="worker"></app-worker-item>
       </div>
     </section>
 
-    <!-- SECCIÓN DERECHA: FÁBRICA -->
     <section>
       <div class="section-header">
         <h2 class="section-title">
@@ -67,49 +62,29 @@
         </h2>
         <span class="status-badge manual">OPERACIÓN MANUAL</span>
       </div>
-
       <div class="list-products">
-        <app-product-item 
-          *ngFor="let prod of game.state().products()" 
-          [product]="prod">
-        </app-product-item>
+        <app-product-item *ngFor="let prod of game.state().products()" [product]="prod"></app-product-item>
       </div>
     </section>
-
   </main>
 
-  <!-- DRAWER / MENÚ LATERAL -->
+  <!-- DRAWER -->
   <div class="drawer-overlay" *ngIf="isMenuOpen" (click)="toggleMenu()"></div>
-  
   <div class="drawer-panel" [class.open]="isMenuOpen">
     <div class="drawer-header">
       <h3>PANEL DE CONTROL</h3>
       <button class="close-btn" (click)="toggleMenu()">✕</button>
     </div>
-    
     <div class="drawer-content">
-      <p class="drawer-label">Gestión</p>
-      
-      <button (click)="navigateTo('/settings')" class="drawer-btn">
-        <span class="icon">⚙️</span> Configuración
-      </button>
-      
-      <button (click)="navigateTo('/stats')" class="drawer-btn">
-        <span class="icon">🏆</span> Logros & Ranking
-      </button>
-      
-      <button (click)="navigateTo('/credits')" class="drawer-btn">
-        <span class="icon">👥</span> Créditos
-      </button>
-      
-      <button (click)="navigateTo('/menu')" class="drawer-btn exit">
-        <span class="icon">🚪</span> Volver al Menú Principal
-      </button>
+      <p class="drawer-label">Gestión Corporativa</p>
+      <button (click)="navigateTo('/settings')" class="drawer-btn"><span class="icon">⚙️</span> Configuración</button>
+      <button (click)="navigateTo('/stats')" class="drawer-btn"><span class="icon">🏆</span> Logros</button>
+      <button (click)="navigateTo('/credits')" class="drawer-btn"><span class="icon">👥</span> Créditos</button>
+      <div class="drawer-divider"></div>
+      <p class="drawer-label">Sesión</p>
+      <button (click)="navigateTo('/menu')" class="drawer-btn exit"><span class="icon">🚪</span> Salir al Menú</button>
     </div>
-    
-    <div class="drawer-footer">
-      Tycoon System v0.2.1
-    </div>
+    <div class="drawer-footer">Tycoon System v0.2.2</div>
   </div>
 
 </div>

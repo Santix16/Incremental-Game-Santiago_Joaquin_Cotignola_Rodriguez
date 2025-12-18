@@ -1,4 +1,4 @@
-export type ResourceType = 'wood' | 'iron' | 'silicon' | 'gold';
+export type ResourceType = 'wood' | 'iron' | 'silicon' | 'gold' | 'oil';
 
 export interface Resource {
   type: ResourceType;

@@ -1,22 +1,33 @@
-<app-menu></app-menu>
+<div class="stats-container">
+  <div class="stats-card">
+    
+    <div class="card-header">
+      <button class="tab-btn" [class.active]="activeTab === 'achievements'" (click)="setTab('achievements')">
+        Logros
+      </button>
+      
+    </div>
 
-<h2>Ranking</h2>
-<table>
-  <tr>
-    <th>Posición</th>
-    <th>Usuario</th>
-    <th>Puntos</th>
-    <th>Monedas</th>
-  </tr>
-  <tr *ngFor="let user of users; let i = index">
-    <td>{{ i + 1 }}</td>
-    <td>{{ user.username }}</td>
-    <td>{{ user.points }}</td>
-    <td>{{ user.coins }}</td>
-  </tr>
-</table>
-<a routerLink="/">Volver al Menú</a>
+    <div class="card-body">
+      
+      <!-- Pestaña Logros -->
+      <div *ngIf="activeTab === 'achievements'" class="achievements-grid">
+        <div *ngFor="let ach of game.state().achievements()" 
+             class="achievement-item" 
+             [class.unlocked]="ach.unlocked">
+          <div class="ach-icon">{{ ach.unlocked ? ach.icon : '🔒' }}</div>
+          <div class="ach-name">{{ ach.name }}</div>
+          <div class="ach-desc">{{ ach.description }}</div>
+          <div class="ach-status">{{ ach.unlocked ? 'Desbloqueado' : 'Bloqueado' }}</div>
+        </div>
+      </div>
 
+      <!-- Pestaña Ranking -->
+     
 
+    <div class="card-footer">
+      <button routerLink="/game" class="btn-back">Volver a la Fábrica</button>
+    </div>
 
-
+  </div>
+</div>
