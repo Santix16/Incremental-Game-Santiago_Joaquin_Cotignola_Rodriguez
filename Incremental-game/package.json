@@ -55,16 +55,18 @@
     "@angular/forms": "^21.0.0",
     "@angular/platform-browser": "^21.0.0",
     "@angular/router": "^21.0.0",
+    "@capacitor/android": "^8.0.1",
     "@capacitor/angular": "^2.0.3",
+    "@capacitor/core": "latest",
     "json-server": "^1.0.0-beta.3",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "@capacitor/core": "latest"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular/build": "^21.0.2",
     "@angular/cli": "^21.0.2",
     "@angular/compiler-cli": "^21.0.0",
+    "@capacitor/cli": "latest",
     "angular-eslint": "21.1.0",
     "electron": "^39.2.6",
     "electron-builder": "^26.0.12",
@@ -74,8 +76,7 @@
     "typescript": "~5.9.2",
     "typescript-eslint": "8.47.0",
     "vitest": "^4.0.8",
-    "wait-on": "^9.0.3",
-    "@capacitor/cli": "latest"
+    "wait-on": "^9.0.3"
   },
   "description": "This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.2.",
   "keywords": [],
