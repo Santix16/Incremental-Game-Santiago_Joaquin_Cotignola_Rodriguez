@@ -1,19 +1,19 @@
 <div class="stats-container">
   <div class="stats-card">
-    
+
     <div class="card-header">
       <button class="tab-btn" [class.active]="activeTab === 'achievements'" (click)="setTab('achievements')">
         Logros
       </button>
-      
+
     </div>
 
     <div class="card-body">
-      
+
       <!-- Pestaña Logros -->
       <div *ngIf="activeTab === 'achievements'" class="achievements-grid">
-        <div *ngFor="let ach of game.state().achievements()" 
-             class="achievement-item" 
+        <div *ngFor="let ach of game.state().achievements()"
+             class="achievement-item"
              [class.unlocked]="ach.unlocked">
           <div class="ach-icon">{{ ach.unlocked ? ach.icon : '🔒' }}</div>
           <div class="ach-name">{{ ach.name }}</div>
@@ -22,11 +22,8 @@
         </div>
       </div>
 
-      <!-- Pestaña Ranking -->
-     
-
     <div class="card-footer">
-      <button routerLink="/game" class="btn-back">Volver a la Fábrica</button>
+      <button routerLink="/menu" class="btn-back">Volver al Menú Principal</button>
     </div>
 
   </div>
