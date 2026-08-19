@@ -1,4 +1,4 @@
-# Incremental Game - Santiago Alejandro
+# Incremental Game - Santiago Joaquin Cotignola Rodriguez
 
 Juego incremental desarrollado en Angular para gestionar recursos, contratar trabajadores, producir artículos y progresar con un sistema de economía y logros. El proyecto incluye pantalla de login, registro, menú, tienda, estadísticas, ajustes, créditos y soporte para Android mediante Capacitor.
 
